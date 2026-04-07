@@ -1,0 +1,27 @@
+{{> head}}
+{{> header}}
+<h1>Courses</h1>
+<form class="filter-form" method="get" action="/courses">
+  <label>Search <input type="text" name="q" value="{{filters.q}}"></label>
+  <label>Level <input type="text" name="level" value="{{filters.level}}"></label>
+  <label>Type <input type="text" name="type" value="{{filters.type}}"></label>
+  <label>Drop-in <input type="text" name="dropin" value="{{filters.dropin}}"></label>
+  <button class="btn" type="submit">Filter</button>
+</form>
+<section class="cards">
+  {{#courses}}
+  <article class="card">
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p class="muted">{{startDate}} to {{endDate}}</p>
+    <p class="muted">Next session: {{nextSession}}</p>
+    <a class="btn primary" href="/courses/{{id}}">Open course</a>
+  </article>
+  {{/courses}}
+</section>
+<div class="pagination">
+  {{#pagination.hasPrev}}<a class="btn" href="{{pagination.prevLink}}">Previous</a>{{/pagination.hasPrev}}
+  <span>Page {{pagination.page}} of {{pagination.totalPages}}</span>
+  {{#pagination.hasNext}}<a class="btn" href="{{pagination.nextLink}}">Next</a>{{/pagination.hasNext}}
+</div>
+{{> footer}}

@@ -1,0 +1,20 @@
+{{> head}}
+{{> header}}
+<article>
+  <h1>{{course.title}}</h1>
+  <p>{{course.description}}</p>
+  <p class="muted">{{course.level}} · {{course.type}} · {{course.startDate}} to {{course.endDate}}</p>
+  <p><a class="btn primary" href="/courses/{{course.id}}/book">Book this course</a></p>
+  <table class="table">
+    <thead><tr><th>Start</th><th>End</th><th>Capacity</th><th>Booked</th><th>Remaining</th><th>Action</th></tr></thead>
+    <tbody>
+      {{#sessions}}
+      <tr>
+        <td>{{start}}</td><td>{{end}}</td><td>{{capacity}}</td><td>{{booked}}</td><td>{{remaining}}</td>
+        <td><a class="btn" href="/sessions/{{id}}/book">Book session</a></td>
+      </tr>
+      {{/sessions}}
+    </tbody>
+  </table>
+</article>
+{{> footer}}

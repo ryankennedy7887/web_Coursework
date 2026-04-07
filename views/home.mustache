@@ -1,0 +1,16 @@
+{{> head}}
+{{> header}}
+<h1>Upcoming Courses</h1>
+<p class="muted">Browse current and upcoming yoga and mindfulness courses.</p>
+<section class="cards">
+  {{#courses}}
+  <article class="card">
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p class="muted">{{level}} · {{type}} · {{sessionsCount}} sessions</p>
+    <p class="muted">Next session: {{nextSession}}</p>
+    <a class="btn primary" href="/courses/{{id}}">View details</a>
+  </article>
+  {{/courses}}
+</section>
+{{> footer}}

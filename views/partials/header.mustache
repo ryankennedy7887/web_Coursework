@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/">Yoga Studio</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/courses">Courses</a>
+      <a href="/organiser?as=organiser">Organiser</a>
+    </nav>
+    {{#user}}
+    <div class="user">Signed in as <strong>{{name}}</strong> ({{role}})</div>
+    {{/user}}
+  </div>
+</header>

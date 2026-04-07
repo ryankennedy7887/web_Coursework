@@ -1,0 +1,15 @@
+{{> head}}
+{{> header}}
+<h1>Organiser dashboard</h1>
+{{#isOrganiser}}
+<table class="table">
+  <thead><tr><th>Course</th><th>Active bookings</th><th>Participants</th></tr></thead>
+  <tbody>
+    {{#courses}}
+    <tr><td>{{title}}</td><td>{{bookingsCount}}</td><td>{{participants}}</td></tr>
+    {{/courses}}
+  </tbody>
+</table>
+{{/isOrganiser}}
+{{^isOrganiser}}<p>You must switch to organiser mode to view this page.</p>{{/isOrganiser}}
+{{> footer}}
