@@ -17,12 +17,10 @@ npm install
 Seeding the Database
 This project uses NeDB with a seed script to create sample users, courses, sessions, and bookings.
 
-bash
 npm run seed
 After seeding, the app will have demo data suitable for development, testing, and demonstration.
 
 Running the Application
-bash
 # Start the app
 npm start
 
@@ -44,7 +42,7 @@ A health endpoint is also exposed at:
 
 http://localhost:3000/health
 
-Features
+Features:
 - Course browsing
 - Home page showing upcoming / featured courses.
 - Full course listing with search and filters (level, type, drop‑in).
@@ -63,14 +61,14 @@ Central booking service:
 - Booking confirmation page with booking ID, status, and key details.
 - Booking cancellation endpoint that updates booking status and session counts.
 
-User‑facing pages
+User‑facing pages:
 - Home, course list, course detail, course booking, session booking.
 - Booking confirmation.
 - Login and signup pages (for coursework‑level auth flows).
 - Basic account view.
 - Organiser dashboard summarising courses and participants.
 
-Architecture
+Architecture:
 - Layered, MVC‑inspired design:
 - Models (NeDB): users, courses, sessions, bookings.
 - Services: booking logic centralised in bookingService.
