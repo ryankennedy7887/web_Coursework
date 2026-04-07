@@ -1,0 +1,5 @@
+{"name":"Fiona","email":"fiona@student.local","role":"student","password":"5c1a72fc8b061243ce2b9827d087db391926990fbec68983dbf9526284b3fc4d","_id":"AAhvhSZsW3M9zMPy"}
+{"name":"Demo Organiser","email":"organiser@yoga.local","role":"organiser","password":"5c1a72fc8b061243ce2b9827d087db391926990fbec68983dbf9526284b3fc4d","_id":"CfuSB5acC4AaV0m8"}
+{"name":"Ava","email":"ava@yoga.local","role":"instructor","password":"5c1a72fc8b061243ce2b9827d087db391926990fbec68983dbf9526284b3fc4d","_id":"WO9CZKnxaC1xikFm"}
+{"name":"Ben","email":"ben@yoga.local","role":"instructor","password":"5c1a72fc8b061243ce2b9827d087db391926990fbec68983dbf9526284b3fc4d","_id":"bpGgVBaJ9HwTksAi"}
+{"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}

@@ -1,15 +1,54 @@
 {{> head}}
 {{> header}}
-<h1>Organiser dashboard</h1>
-{{#isOrganiser}}
-<table class="table">
-  <thead><tr><th>Course</th><th>Active bookings</th><th>Participants</th></tr></thead>
-  <tbody>
-    {{#courses}}
-    <tr><td>{{title}}</td><td>{{bookingsCount}}</td><td>{{participants}}</td></tr>
-    {{/courses}}
-  </tbody>
-</table>
-{{/isOrganiser}}
-{{^isOrganiser}}<p>You must switch to organiser mode to view this page.</p>{{/isOrganiser}}
+
+<main class="container">
+  <section class="section-header">
+    <h1>Organiser dashboard</h1>
+    <p class="muted">View bookings and participants across all courses.</p>
+  </section>
+
+  {{#isOrganiser}}
+    {{#hasCourses}}
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Level</th>
+            <th>Type</th>
+            <th>Total bookings</th>
+            <th>Participants</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#courses}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{level}}</td>
+            <td>{{type}}</td>
+            <td>{{bookingsCount}}</td>
+            <td>{{participants}}</td>
+          </tr>
+          {{/courses}}
+        </tbody>
+      </table>
+    </section>
+    {{/hasCourses}}
+
+    {{^hasCourses}}
+    <section class="empty-state">
+      <h2>No course data yet</h2>
+      <p class="muted">There are no courses available to display in the dashboard.</p>
+    </section>
+    {{/hasCourses}}
+  {{/isOrganiser}}
+
+  {{^isOrganiser}}
+  <section class="empty-state">
+    <h2>Access restricted</h2>
+    <p class="muted">This page is intended for organiser users only.</p>
+  </section>
+  {{/isOrganiser}}
+</main>
+
 {{> footer}}

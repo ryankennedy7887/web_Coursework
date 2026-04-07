@@ -1,11 +1,41 @@
 {{> head}}
 {{> header}}
-<h1>Booking confirmation</h1>
-<p>Your booking was created successfully.</p>
-<ul>
-  <li>ID: {{booking.id}}</li>
-  <li>Type: {{booking.type}}</li>
-  <li>Status: {{booking.status}}</li>
-  <li>Created: {{booking.createdAt}}</li>
-</ul>
+
+<main class="container">
+  <section class="detail-card">
+    <h1>Booking confirmation</h1>
+
+    {{#isConfirmed}}
+    <p class="status success">Your booking has been confirmed.</p>
+    {{/isConfirmed}}
+
+    {{#isPending}}
+    <p class="status warning">Your booking is pending.</p>
+    {{/isPending}}
+
+    {{#isCancelled}}
+    <p class="status danger">This booking has been cancelled.</p>
+    {{/isCancelled}}
+
+    <ul class="meta-list">
+      <li><strong>Booking ID:</strong> {{booking.id}}</li>
+      <li><strong>Status:</strong> {{booking.status}}</li>
+      <li><strong>User ID:</strong> {{booking.userId}}</li>
+      <li><strong>Course ID:</strong> {{booking.courseId}}</li>
+      <li><strong>Created:</strong> {{booking.createdAt}}</li>
+    </ul>
+
+    <div class="actions">
+      <a class="btn" href="/courses">Browse courses</a>
+      <a class="btn" href="/admin">View dashboard</a>
+    </div>
+
+    {{^isCancelled}}
+    <form method="post" action="/bookings/{{booking.id}}/cancel">
+      <button class="btn danger" type="submit">Cancel booking</button>
+    </form>
+    {{/isCancelled}}
+  </section>
+</main>
+
 {{> footer}}

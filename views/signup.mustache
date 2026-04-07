@@ -1,0 +1,42 @@
+{{> head}}
+{{> header}}
+
+<main class="container">
+  <section class="detail-card">
+    <h1>Sign up</h1>
+    {{#error}}
+    <p class="status danger">{{error}}</p>
+    {{/error}}
+
+    <form method="post" action="/auth/signup">
+      <label>
+        Name
+        <input type="text" name="name" value="{{name}}" required>
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" value="{{email}}" required>
+      </label>
+
+      <label>
+        Password
+        <input type="password" name="password" required>
+      </label>
+
+      <label>
+        Confirm password
+        <input type="password" name="confirmPassword" required>
+      </label>
+
+      <input type="hidden" name="next" value="{{next}}">
+      <button class="btn primary" type="submit">Sign up</button>
+    </form>
+
+    <p class="muted">
+      Already have an account? <a href="/auth/login">Log in</a>.
+    </p>
+  </section>
+</main>
+
+{{> footer}}

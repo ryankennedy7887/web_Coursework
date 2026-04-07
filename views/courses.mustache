@@ -1,27 +1,88 @@
 {{> head}}
 {{> header}}
-<h1>Courses</h1>
-<form class="filter-form" method="get" action="/courses">
-  <label>Search <input type="text" name="q" value="{{filters.q}}"></label>
-  <label>Level <input type="text" name="level" value="{{filters.level}}"></label>
-  <label>Type <input type="text" name="type" value="{{filters.type}}"></label>
-  <label>Drop-in <input type="text" name="dropin" value="{{filters.dropin}}"></label>
-  <button class="btn" type="submit">Filter</button>
-</form>
-<section class="cards">
-  {{#courses}}
-  <article class="card">
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p class="muted">{{startDate}} to {{endDate}}</p>
-    <p class="muted">Next session: {{nextSession}}</p>
-    <a class="btn primary" href="/courses/{{id}}">Open course</a>
-  </article>
-  {{/courses}}
-</section>
-<div class="pagination">
-  {{#pagination.hasPrev}}<a class="btn" href="{{pagination.prevLink}}">Previous</a>{{/pagination.hasPrev}}
-  <span>Page {{pagination.page}} of {{pagination.totalPages}}</span>
-  {{#pagination.hasNext}}<a class="btn" href="{{pagination.nextLink}}">Next</a>{{/pagination.hasNext}}
-</div>
+
+<main class="container">
+  <section class="section-header">
+    <h1>Course listings</h1>
+    <p class="muted">Filter by title, level, type, or drop-in availability.</p>
+  </section>
+
+  <form class="filter-form" method="get" action="/courses">
+    <div class="form-grid">
+      <label>
+        Search
+        <input type="text" name="q" value="{{filters.q}}" placeholder="Course title or keyword">
+      </label>
+
+      <label>
+        Level
+        <input type="text" name="level" value="{{filters.level}}" placeholder="Beginner, mixed, advanced">
+      </label>
+
+      <label>
+        Type
+        <input type="text" name="type" value="{{filters.type}}" placeholder="Yoga, mindfulness, workshop">
+      </label>
+
+      <label>
+        Drop-in
+        <select name="dropin">
+          <option value="">Any</option>
+          <option value="yes" {{#filters.dropinYes}}selected{{/filters.dropinYes}}>Yes</option>
+          <option value="no" {{#filters.dropinNo}}selected{{/filters.dropinNo}}>No</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Apply filters</button>
+      <a class="btn" href="/courses">Reset</a>
+    </div>
+  </form>
+
+  {{#hasCourses}}
+  <section class="cards">
+    {{#courses}}
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge">{{level}}</span>
+        <span class="badge subtle">{{type}}</span>
+      </div>
+      <h2>{{title}}</h2>
+      <p>{{description}}</p>
+      <ul class="meta-list">
+        <li><strong>Dates:</strong> {{startDate}} to {{endDate}}</li>
+        <li><strong>Sessions:</strong> {{sessionsCount}}</li>
+        <li><strong>Next session:</strong> {{nextSession}}</li>
+        <li><strong>Drop-in:</strong> {{allowDropInText}}</li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary" href="/courses/{{id}}">View course</a>
+        <a class="btn" href="/courses/{{id}}/book">Book course</a>
+      </div>
+    </article>
+    {{/courses}}
+  </section>
+
+  <nav class="pagination">
+    {{#pagination.hasPrev}}
+    <a class="btn" href="{{pagination.prevLink}}">Previous</a>
+    {{/pagination.hasPrev}}
+
+    <span>Page {{pagination.page}} of {{pagination.totalPages}}</span>
+
+    {{#pagination.hasNext}}
+    <a class="btn" href="{{pagination.nextLink}}">Next</a>
+    {{/pagination.hasNext}}
+  </nav>
+  {{/hasCourses}}
+
+  {{^hasCourses}}
+  <section class="empty-state">
+    <h2>No matching courses</h2>
+    <p class="muted">Try changing the search term or clearing the filters.</p>
+  </section>
+  {{/hasCourses}}
+</main>
+
 {{> footer}}

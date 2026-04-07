@@ -1,16 +1,52 @@
 {{> head}}
 {{> header}}
-<h1>Upcoming Courses</h1>
-<p class="muted">Browse current and upcoming yoga and mindfulness courses.</p>
-<section class="cards">
-  {{#courses}}
-  <article class="card">
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p class="muted">{{level}} · {{type}} · {{sessionsCount}} sessions</p>
-    <p class="muted">Next session: {{nextSession}}</p>
-    <a class="btn primary" href="/courses/{{id}}">View details</a>
-  </article>
-  {{/courses}}
-</section>
+
+<main class="container">
+  <section class="hero">
+    <h1>Upcoming yoga courses</h1>
+    <p class="muted">Browse current and upcoming yoga and mindfulness courses, view session schedules, and make bookings online.</p>
+    <div class="actions">
+      <a class="btn primary" href="/courses">Browse all courses</a>
+      <a class="btn" href="/admin">Organiser dashboard</a>
+    </div>
+  </section>
+
+  <section class="section-header">
+    <h2>Featured courses</h2>
+    <p class="muted">A quick overview of current bookable options.</p>
+  </section>
+
+  {{#hasCourses}}
+  <section class="cards">
+    {{#courses}}
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge">{{level}}</span>
+        <span class="badge subtle">{{type}}</span>
+      </div>
+      <h3>{{title}}</h3>
+      <p>{{description}}</p>
+      <ul class="meta-list">
+        <li><strong>Dates:</strong> {{startDate}} to {{endDate}}</li>
+        <li><strong>Sessions:</strong> {{sessionsCount}}</li>
+        <li><strong>Next session:</strong> {{nextSession}}</li>
+        <li><strong>Booking:</strong> {{allowDropInText}}</li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary" href="/courses/{{id}}">View details</a>
+        <a class="btn" href="/courses/{{id}}/book">Book now</a>
+      </div>
+    </article>
+    {{/courses}}
+  </section>
+  {{/hasCourses}}
+
+  {{^hasCourses}}
+  <section class="empty-state">
+    <h2>No courses yet</h2>
+    <p class="muted">There are currently no active courses to display.</p>
+  </section>
+  {{/hasCourses}}
+</main>
+
 {{> footer}}

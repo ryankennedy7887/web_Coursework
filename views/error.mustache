@@ -1,1 +1,15 @@
-{{> head}}{{> header}}<h1>{{title}}</h1><p>{{message}}</p>{{> footer}}
+{{> head}}
+{{> header}}
+
+<main class="container">
+  <section class="detail-card">
+    <h1>{{title}}</h1>
+    <p>{{message}}</p>
+    <div class="actions">
+      <a class="btn primary" href="/">Go home</a>
+      <a class="btn" href="/courses">View courses</a>
+    </div>
+  </section>
+</main>
+
+{{> footer}}

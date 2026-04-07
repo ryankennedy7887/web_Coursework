@@ -1,26 +1,51 @@
 {{> head}}
 {{> header}}
-<article>
-  <h1>{{#isSessionBooking}}Book Session{{/isSessionBooking}}{{^isSessionBooking}}Confirm Course Booking{{/isSessionBooking}}</h1>
-  <p><strong>{{course.title}}</strong></p>
-  <p class="muted">{{course.level}} · {{course.type}} {{#course.allowDropIn}}· Drop-in available{{/course.allowDropIn}}</p>
-  <p>{{course.description}}</p>
-  <form method="post" action="{{#action}}{{action}}{{/action}}{{^action}}/courses/{{course.id}}/book{{/action}}">
-    <input type="hidden" name="userId" value="{{user._id}}">
-    <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required value="{{user.name}}"></div>
-    <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required value="{{user.email}}"></div>
-    <div class="field"><label for="notes">Notes</label><textarea id="notes" name="notes" rows="4"></textarea></div>
-    <div class="field checkbox"><input id="consent" name="consent" type="checkbox" required><label for="consent">I agree to the booking terms.</label></div>
-    <p>This booking covers <strong>{{sessionsCount}}</strong> session(s).</p>
-    <ul>
-      {{#sessions}}
-      <li>{{start}} ({{remaining}} places left)</li>
-      {{/sessions}}
+
+<main class="container">
+  <section class="detail-card">
+    <h1>{{title}}</h1>
+    <p class="muted">Booking as {{user.name}} ({{user.role}})</p>
+
+    <ul class="meta-list">
+      <li><strong>Course:</strong> {{course.title}}</li>
+      <li><strong>Level:</strong> {{course.level}}</li>
+      <li><strong>Type:</strong> {{course.type}}</li>
+      <li><strong>Course dates:</strong> {{course.startDate}} to {{course.endDate}}</li>
+      <li><strong>Drop-in available:</strong> {{course.allowDropInText}}</li>
+      <li><strong>Sessions shown:</strong> {{sessionsCount}}</li>
     </ul>
-    <div class="actions">
-      <button class="btn primary" type="submit">Confirm booking</button>
+
+    {{#hasSessions}}
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Remaining spaces</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#sessions}}
+          <tr>
+            <td>{{start}}</td>
+            <td>{{end}}</td>
+            <td>{{remaining}}</td>
+          </tr>
+          {{/sessions}}
+        </tbody>
+      </table>
+    </section>
+    {{/hasSessions}}
+
+    <form method="post" action="{{action}}">
+      <button class="btn primary" type="submit">
+        {{#isSessionBooking}}Confirm session booking{{/isSessionBooking}}
+        {{^isSessionBooking}}Confirm course booking{{/isSessionBooking}}
+      </button>
       <a class="btn" href="/courses/{{course.id}}">Cancel</a>
-    </div>
-  </form>
-</article>
+    </form>
+  </section>
+</main>
+
 {{> footer}}

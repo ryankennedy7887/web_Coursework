@@ -1,0 +1,52 @@
+{{> head}}
+{{> header}}
+
+<main class="container">
+  <section class="detail-card">
+    <h1>My account</h1>
+    <p class="muted">Manage your profile and bookings.</p>
+
+    <ul class="meta-list">
+      <li><strong>Name:</strong> {{user.name}}</li>
+      <li><strong>Email:</strong> {{user.email}}</li>
+      <li><strong>Role:</strong> {{user.role}}</li>
+    </ul>
+  </section>
+
+  <section class="detail-card">
+    <h2>My bookings</h2>
+
+    {{#hasBookings}}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Sessions</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#bookings}}
+          <tr>
+            <td>{{courseTitle}}</td>
+            <td>{{type}}</td>
+            <td>{{status}}</td>
+            <td>{{sessionsCount}}</td>
+            <td>{{createdAt}}</td>
+          </tr>
+          {{/bookings}}
+        </tbody>
+      </table>
+    </div>
+    {{/hasBookings}}
+
+    {{^hasBookings}}
+    <p class="muted">You have not made any bookings yet.</p>
+    {{/hasBookings}}
+  </section>
+</main>
+
+{{> footer}}

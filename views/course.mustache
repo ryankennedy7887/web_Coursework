@@ -1,20 +1,68 @@
 {{> head}}
 {{> header}}
-<article>
-  <h1>{{course.title}}</h1>
-  <p>{{course.description}}</p>
-  <p class="muted">{{course.level}} · {{course.type}} · {{course.startDate}} to {{course.endDate}}</p>
-  <p><a class="btn primary" href="/courses/{{course.id}}/book">Book this course</a></p>
-  <table class="table">
-    <thead><tr><th>Start</th><th>End</th><th>Capacity</th><th>Booked</th><th>Remaining</th><th>Action</th></tr></thead>
-    <tbody>
-      {{#sessions}}
-      <tr>
-        <td>{{start}}</td><td>{{end}}</td><td>{{capacity}}</td><td>{{booked}}</td><td>{{remaining}}</td>
-        <td><a class="btn" href="/sessions/{{id}}/book">Book session</a></td>
-      </tr>
-      {{/sessions}}
-    </tbody>
-  </table>
-</article>
+
+<main class="container">
+  <article class="detail-card">
+    <div class="card-meta">
+      <span class="badge">{{course.level}}</span>
+      <span class="badge subtle">{{course.type}}</span>
+    </div>
+
+    <h1>{{course.title}}</h1>
+    <p>{{course.description}}</p>
+
+    <ul class="meta-list">
+      <li><strong>Course start:</strong> {{course.startDate}}</li>
+      <li><strong>Course end:</strong> {{course.endDate}}</li>
+      <li><strong>Drop-in available:</strong> {{course.allowDropInText}}</li>
+    </ul>
+
+    <div class="actions">
+      <a class="btn primary" href="/courses/{{course.id}}/book">Book this course</a>
+      <a class="btn" href="/courses">Back to courses</a>
+    </div>
+  </article>
+
+  <section class="section-header">
+    <h2>Scheduled sessions</h2>
+    <p class="muted">View capacity and availability before booking.</p>
+  </section>
+
+  {{#hasSessions}}
+  <section class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Capacity</th>
+          <th>Booked</th>
+          <th>Remaining</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#sessions}}
+        <tr>
+          <td>{{start}}</td>
+          <td>{{end}}</td>
+          <td>{{capacity}}</td>
+          <td>{{booked}}</td>
+          <td>{{remaining}}</td>
+          <td><a class="btn" href="/sessions/{{id}}/book">Book session</a></td>
+        </tr>
+        {{/sessions}}
+      </tbody>
+    </table>
+  </section>
+  {{/hasSessions}}
+
+  {{^hasSessions}}
+  <section class="empty-state">
+    <h3>No sessions scheduled</h3>
+    <p class="muted">This course does not currently have any scheduled sessions.</p>
+  </section>
+  {{/hasSessions}}
+</main>
+
 {{> footer}}

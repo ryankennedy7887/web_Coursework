@@ -2,8 +2,10 @@ import { initDb, usersDb, coursesDb, sessionsDb, bookingsDb } from '../models/_d
 import { CourseModel } from '../models/courseModel.js';
 import { SessionModel } from '../models/sessionModel.js';
 import { UserModel } from '../models/userModel.js';
+import crypto from 'crypto';
 
 const iso = (d) => new Date(d).toISOString();
+const hashPassword = (password) => crypto.createHmac('sha256', process.env.JWT_SECRET || 'change-this-secret').update(password).digest('hex');
 
 async function wipeAll() {
   await Promise.all([
@@ -15,10 +17,10 @@ async function wipeAll() {
 }
 
 async function ensureUsers() {
-  const student = await UserModel.create({ name: 'Fiona', email: 'fiona@student.local', role: 'student' });
-  const organiser = await UserModel.create({ name: 'Demo Organiser', email: 'organiser@yoga.local', role: 'organiser' });
-  const instructor1 = await UserModel.create({ name: 'Ava', email: 'ava@yoga.local', role: 'instructor' });
-  const instructor2 = await UserModel.create({ name: 'Ben', email: 'ben@yoga.local', role: 'instructor' });
+  const student = await UserModel.create({ name: 'Fiona', email: 'fiona@student.local', password: hashPassword('password123'), role: 'student' });
+  const organiser = await UserModel.create({ name: 'Demo Organiser', email: 'organiser@yoga.local', password: hashPassword('password123'), role: 'organiser' });
+  const instructor1 = await UserModel.create({ name: 'Ava', email: 'ava@yoga.local', password: hashPassword('password123'), role: 'instructor' });
+  const instructor2 = await UserModel.create({ name: 'Ben', email: 'ben@yoga.local', password: hashPassword('password123'), role: 'instructor' });
   return { student, organiser, instructor1, instructor2 };
 }
 

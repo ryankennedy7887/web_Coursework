@@ -1,0 +1,5 @@
+{"userId":"demo-organiser","courseId":"RLuelDFY233Vig0V","type":"SESSION","sessionIds":["tU4djCeqVwUFyL6s"],"status":"CONFIRMED","createdAt":"2026-04-07T10:05:36.817Z","_id":"14JbBNeWLxBuhLJu"}
+{"userId":"demo-organiser","courseId":"RLuelDFY233Vig0V","type":"SESSION","sessionIds":["okeNi3oROUZshPPL"],"status":"CONFIRMED","createdAt":"2026-04-07T10:06:51.101Z","_id":"WTdh9n2DHOb9ypb3"}
+{"$$indexCreated":{"fieldName":"userId","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"courseId","unique":false,"sparse":false}}
+{"userId":"AAhvhSZsW3M9zMPy","userName":"Fiona","userEmail":"fiona@student.local","courseId":"d9d3Mr9KBFJI2zIw","type":"SESSION","sessionIds":["3wDZAPTT8Aqi7VLV"],"status":"CONFIRMED","createdAt":"2026-04-07T10:25:33.996Z","_id":"5mPxn2sETNIBuXyl"}
